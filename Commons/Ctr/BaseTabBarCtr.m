@@ -8,7 +8,9 @@
 
 #import "BaseTabBarCtr.h"
 #import "BaseNavCtr.h"
-#import "UIView+Frame.h"
+#import "AlphabetController.h"
+#import "HanziController.h"
+#import "HanziPartController.h"
 
 @interface BaseTabBarCtr ()
 
@@ -18,6 +20,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    AlphabetController *alphabetVC = [[AlphabetController alloc] init];
+    [self addChildViewController:alphabetVC title:@"学字母" image:[UIImage imageNamed:@"shu_normal"] selectedImage:[UIImage imageNamed:@"shu_selected"]];
+    
+    HanziController *hanziVC = [[HanziController alloc] init];
+    [self addChildViewController:hanziVC title:@"学汉字" image:[UIImage imageNamed:@"shu_normal"] selectedImage:[UIImage imageNamed:@"shu_selected"]];
+    
+    HanziPartController *hanziParkVC = [[HanziPartController alloc] init];
+    [self addChildViewController:hanziParkVC title:@"游乐园" image:[UIImage imageNamed:@"shu_normal"] selectedImage:[UIImage imageNamed:@"shu_selected"]];
+    
 }
 
 - (void)addChildViewController:(UIViewController *)childController
@@ -28,17 +40,17 @@
     BaseNavCtr *baseNavc = [[BaseNavCtr alloc] initWithRootViewController:childController];
     childController.tabBarItem.image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     childController.tabBarItem.selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    NSDictionary *dict = @{
-                           NSForegroundColorAttributeName : [UIColor lightGrayColor],
+    NSDictionary *dict_normal = @{
+                           NSForegroundColorAttributeName : [UIColor colorWithHexString:@"8a8a8a"],
                            };
-    [childController.tabBarItem setTitleTextAttributes:dict forState:UIControlStateNormal];
-    [childController.tabBarItem setTitleTextAttributes:dict forState:UIControlStateSelected];
+    NSDictionary *dict_selected = @{
+                           NSForegroundColorAttributeName : ThemeColor,
+                           };
+    [childController.tabBarItem setTitleTextAttributes:dict_normal forState:UIControlStateNormal];
+    [childController.tabBarItem setTitleTextAttributes:dict_selected forState:UIControlStateSelected];
     childController.tabBarItem.title = title;
     [self addChildViewController:baseNavc];
 }
-
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -26,6 +26,7 @@
 #define kTabBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height>20?83:49)
 //状态栏+导航栏高度
 #define kTopHeight (kStatusBarHeight + kNavBarHeight)
+#define kViewSafeArea_BottomValue 34.00
 
 //获取屏幕宽高
 #define KScreenWidth ([[UIScreen mainScreen] bounds].size.width)
@@ -36,14 +37,15 @@
 // 当前系统版本
 #define CurrentSystemVersion [[UIDevice currentDevice].systemVersion doubleValue]
 
+//判断是否iPhoneX系列
+#define kIs_iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? ((NSInteger)(([[UIScreen mainScreen] currentMode].size.height/[[UIScreen mainScreen] currentMode].size.width)*100) == 216) : NO)
 
 //强弱化引用
 #define WeakObj(o)  __weak typeof(o) o##Weak = o;
 #define StrongObj(o) __strong typeof(o) o = o##Weak;
 
 //适配比例
-#define VC_FitRatio  (([UIScreen mainScreen].bounds.size.width)/375.0)
-#define VC_FitRatio_Y VC_FitRatio
+#define ScaleFit(value) (value * ([UIScreen mainScreen].bounds.size.width)/375.00)
 
 //发送通知
 #define KPostNotification(name,obj) [[NSNotificationCenter defaultCenter] postNotificationName:name object:obj];

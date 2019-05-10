@@ -34,10 +34,9 @@
 
 - (void)configNavc {
     self.navigationBar.translucent = NO;
-    self.navigationBar.tintColor = [UIColor blackColor];
+    self.navigationBar.tintColor = RGBColorAlpha(254, 250, 243, 1.0);
     
-    [self.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"#F5A816"]] forBarMetrics:UIBarMetricsDefault];
-    
+    [self.navigationBar setBackgroundImage:[UIImage imageWithColor:ThemeColor] forBarMetrics:UIBarMetricsDefault];
     [self.navigationBar setShadowImage:[UIImage new]];
 }
 
